@@ -1,0 +1,75 @@
+1) Código php para vincular la nueva hoja de estilos para el login
+
+// Poner en cola la hoja de estilos para la página de login
+
+function my_custom_login_stylesheet() {
+wp_enqueue_style( 'custom-login', get_stylesheet_directory_uri() . '/style-login.css' );
+}
+
+add_action( 'login_enqueue_scripts', 'my_custom_login_stylesheet' );
+
+
+2) Código css para personalizar la página de login de WordPress
+
+word-input
+{
+border-color: #a0cef7;
+}
+
+input#user_login.input:focus,
+input#user_pass.input.password-input:focus
+{
+border-color: #4fa9fa;
+}
+
+/*Logo del login*/
+
+body.login div#login h1 a {
+margin-top: 50px;
+background-image: url('https://gonzalonavarro.es/wp-content/uploads/2019/11/Gonzalo-Navarro-Es-Logotipo.png');
+height:85px;
+width:320px;
+background-size: 320px 85px;
+background-repeat: no-repeat;
+padding-bottom: 5px;
+}
+
+3) Extra: código php para pulir algunos detalles (urls de la página de login)
+
+//Cambiar url de la página de login y los textos
+function my_login_logo_url() {
+return home_url();
+}
+add_filter( 'login_headerurl', 'my_login_logo_url' );
+
+function my_login_logo_url_title() {
+return 'Zona Código';
+}
+add_filter( 'login_headertitle', 'my_login_logo_url_title' );
+
+
+/*Botón y recuérdame*/
+
+body.login div#login form#loginform p.submit input#wp-submit {
+
+background-color: #fff;
+display: block;
+float: none;
+text-transform: uppercase;
+color: #333;
+text-decoration: none;
+border: none;
+border-bottom: 4px solid #a0cef7;
+
+}
+
+body.login div#login form#loginform p.submit input#wp-submit:hover {
+color: #4fa9fa;
+border-bottom: 4px solid #4fa9fa;
+
+}
+
+body.login div#login form .forgetmenot {
+float: none;
+margin-bottom: 2rem;
+}
